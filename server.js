@@ -1,6 +1,13 @@
-import { graphql, buildSchema } from 'graphql';
+// import {buildSchema, graphql} from 'graphql';
+// import express from 'express';
+// import { graphqlHTTP } from 'express-graphql';
 
-// Construct a schema, using GraphQL schema language
+const {buildSchema, graphql} = require('graphql');
+const express = require('express');
+const {graphqlHTTP} = require('express-graphql');
+
+const app = express();
+
 const schema = buildSchema(`
   type Query {
     name: String,
@@ -8,7 +15,6 @@ const schema = buildSchema(`
   }
 `);
 
-// The root provides a resolver function for each API endpoint
 const root = {
     name: () => {
         return 'ashishakya';
@@ -18,19 +24,15 @@ const root = {
     },
 };
 
+app.use('/graphql', graphqlHTTP({
+    schema,
+    rootValue: root,
+    graphiql: true
+}));
+
+app.listen(8000, () => console.log('Server is running at http://localhost:8000'));
+
 // Run the GraphQL query '{ hello }' and print out the response
-graphql(schema, '{name, email}', root).then((response) => {
-    console.log(response);
-}).catch(error=>console.log(error));
-
-
-
-// const { buildSchema } = require('graphql');
-// const { graphql } = require("gatsby");
-//
-// const schema = buildSchema(`
-// type Query{
-//     name: String
-// }`);
-//
-// graphql(schema, "{name}").then((res)=>console.log(res));
+// graphql(schema, '{name, email}', root).then((response) => {
+//     console.log(response);
+// }).catch(error=>console.log(error));
