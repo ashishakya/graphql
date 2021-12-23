@@ -11,17 +11,17 @@ const app = express();
 const schema = buildSchema(`
   type Query {
     name: String,
-    email: String
+    email: String,
+    age: Float,
+    isDeveloper: Boolean
   }
 `);
 
 const root = {
-    name: () => {
-        return 'ashishakya';
-    },
-    email: () => {
-        return 'ashishakya@outlook.com';
-    },
+    name: () => 'ashishakya',
+    email: () => 'ashishakya@outlook.com',
+    age: ()=> 2.1,
+    isDeveloper:()=>0
 };
 
 app.use('/graphql', graphqlHTTP({
