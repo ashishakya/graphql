@@ -9,19 +9,36 @@ const {graphqlHTTP} = require('express-graphql');
 const app = express();
 
 const schema = buildSchema(`
-  type Query {
-    name: String,
-    email: String,
-    age: Float,
-    isDeveloper: Boolean
-  }
+     type Person {
+         name: String,
+         email: String,
+     }
+     
+     type Developer {
+         profile: Person,
+         experience: Int,
+     }
+     
+     type Query {
+         ashishakya: Developer,
+         isDeveloper: Boolean,
+     }
 `);
 
 const root = {
     name: () => 'ashishakya',
     email: () => 'ashishakya@outlook.com',
-    age: ()=> 2.1,
-    isDeveloper:()=>0
+    age: () => 2.1,
+    isDeveloper: () => 0,
+    ashishakya: () => {
+        return {
+            profile: {
+                name: "ashishakya",
+                email: "ashishakya@outlook.com"
+            },
+            experience: 3
+        }
+    }
 };
 
 app.use('/graphql', graphqlHTTP({

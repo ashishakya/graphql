@@ -7,7 +7,7 @@
   "scripts": {
     "test": "",
     "start": "node server.js",
-    "serve": "nodemon server.js localhost 8080"
+    "watch": "nodemon server.js localhost 8080"
   },
   "repository": {
     "type": "git",
