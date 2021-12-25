@@ -65,6 +65,8 @@ Graphql is fully typed. Different types of graphql types are:
     - It can be used to represent an array of value of specific type
     - List are defined with a type modifier [] that wraps object types, scalars and enums.
 5. Mutation
+   - It is the operation send to server to Create, Update or Delete data
+   - This is as simple as making the API endpoint part of the top-level mutation type instead of the top level query type
 6. Enum
 
 # Passing Arguments
