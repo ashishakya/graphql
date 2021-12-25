@@ -2,8 +2,11 @@
 
 Run `yarn` or `npm install` command.
 
-# Server
-- Run server using `node server.js` from root directory.
+# Run Server 
+Run any one of the following command to run local server:
+- `node server.js` 
+- `yarn serve`
+- `npm run serve`
 
 # References
 https://www.youtube.com/watch?v=SzLOE1VBYRU&t=3s&ab_channel=Bitfumes
@@ -40,5 +43,23 @@ Graphql is fully typed. Different types of graphql types are:
             }
      ```
 3. Query
+   - Query type is the request sent from client to graphql server
+   - It is the root level type
+   - It uses `Schema Definition Language (SDL)` to define a Query
+   - ```
+        Syntax:
+        -------
+            type Query {
+                field1: any_data_type
+                field2: any_data_type
+            }
+     
+        Example:
+        --------
+            type Query {
+                name: String
+                age: Int
+            }
+     ```
 4. Mutation
 5. Enum
