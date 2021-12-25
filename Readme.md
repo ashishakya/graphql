@@ -61,5 +61,8 @@ Graphql is fully typed. Different types of graphql types are:
                 age: Int
             }
      ```
-4. Mutation
-5. Enum
+4. List Type:
+    - It can be used to represent an array of value of specific type
+    - List are defined with a type modifier [] that wraps object types, scalars and enums.
+5. Mutation
+6. Enum

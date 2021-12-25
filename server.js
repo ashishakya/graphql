@@ -5,40 +5,22 @@
 const {buildSchema, graphql} = require('graphql');
 const express = require('express');
 const {graphqlHTTP} = require('express-graphql');
+const users = require('./users.json')
 
 const app = express();
 
 const schema = buildSchema(`
-     type Person {
-         name: String,
-         email: String,
+     type Person{
+        name:String,
+        email:String
      }
-     
-     type Developer {
-         profile: Person,
-         experience: Int,
-     }
-     
      type Query {
-         ashishakya: Developer,
-         isDeveloper: Boolean,
+        users: [Person]     
      }
 `);
 
 const root = {
-    name: () => 'ashishakya',
-    email: () => 'ashishakya@outlook.com',
-    age: () => 2.1,
-    isDeveloper: () => 0,
-    ashishakya: () => {
-        return {
-            profile: {
-                name: "ashishakya",
-                email: "ashishakya@outlook.com"
-            },
-            experience: 3
-        }
-    }
+    users: () => users
 };
 
 app.use('/graphql', graphqlHTTP({
