@@ -15,12 +15,14 @@ const schema = buildSchema(`
         email:String
      }
      type Query {
-        users: [Person]     
+        users: [Person],
+        user(id:Int): Person     
      }
 `);
 
 const root = {
-    users: () => users
+    users: () => users,
+    user: ({id}) => users.find(user=>user.id===id)
 };
 
 app.use('/graphql', graphqlHTTP({

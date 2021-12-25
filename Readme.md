@@ -66,3 +66,8 @@ Graphql is fully typed. Different types of graphql types are:
     - List are defined with a type modifier [] that wraps object types, scalars and enums.
 5. Mutation
 6. Enum
+
+# Passing Arguments
+- It is common to pass arguments to an endpoint in a graphql Api
+- The argument in the schema language, typechecking happens automatically.
+- Each argument must be named and have a type.
