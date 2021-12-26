@@ -9,7 +9,7 @@ const users = require('./users.json')
 
 const app = express();
 
-let fakeDB = {};
+let fakeDB = [];
 
 const schema = buildSchema(`
      type Person{
@@ -19,7 +19,7 @@ const schema = buildSchema(`
      type Query {
         users: [Person],
         user(id:Int): Person,
-        getMessage: String     
+        getMessage: [String]     
      }
      type Mutation {
         addMessage(message:String): String
@@ -29,8 +29,8 @@ const schema = buildSchema(`
 const root = {
     users: () => users,
     user: ({id}) => users.find(user=>user.id===id),
-    addMessage: ({message}) => fakeDB.message = message,
-    getMessage: ()=>fakeDB.message
+    addMessage: ({message}) => fakeDB.push(message),
+    getMessage: ()=>fakeDB
 };
 
 app.use('/graphql', graphqlHTTP({
