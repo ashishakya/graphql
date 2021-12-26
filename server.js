@@ -10,8 +10,8 @@ const users = require('./users.json')
 const app = express();
 
 let fakeDB = [
-    {id:1, name:'office', rent:25},
-    {id:2, name:'school', rent:35},
+    {id: 1, name: 'office', rent: 25},
+    {id: 2, name: 'school', rent: 35},
 ];
 
 const schema = buildSchema(`
@@ -23,9 +23,14 @@ const schema = buildSchema(`
         name:String,
         rent: Int
      }
+     input SpaceInput{
+        name:String
+        rent:Int
+     }
      type Mutation {
         addMessage(message:String): String,
-        createSpace(name: String, rent:Int): Space
+        createSpace(input: SpaceInput): Space
+        updateSpace(id:ID!, input: SpaceInput): Space!
      }
      type Query {
         users: [Person],
@@ -37,11 +42,19 @@ const schema = buildSchema(`
 
 const root = {
     users: () => users,
-    user: ({id}) => users.find(user=>user.id===id),
+    user: ({id}) => users.find(user => user.id === id),
     addMessage: ({message}) => fakeDB.push(message),
-    getMessage: ()=>fakeDB,
-    createSpace:({name, rent})=>fakeDB[fakeDB.length]=({id:fakeDB.length+1, name, rent}),
-    getSpace:({id})=>fakeDB.find(space => space.id === id),
+    getMessage: () => fakeDB,
+    createSpace: ({input}) => fakeDB[fakeDB.length] = ({id: fakeDB.length + 1, name:input.name, rent:input.rent}),
+    getSpace: ({id}) => {
+        console.log(id, fakeDB);
+        return fakeDB.find(space => space.id === id)
+    },
+    updateSpace: ({id, input}) => {
+        const index = id - 1
+        fakeDB[index] = {id:Number(id), name:input.name, rent:input.rent}
+        return fakeDB[index];
+    }
 };
 
 app.use('/graphql', graphqlHTTP({
