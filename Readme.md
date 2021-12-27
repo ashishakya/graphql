@@ -121,3 +121,24 @@ query getUser($user1_id:Int=1, $user2_id:Int=2){
 }
 
 ```
+
+### Directives:
+```
+fragment userFields on Person{
+  name,
+  email @skip(if:$includePet),
+  pet @include(if:$includePet)
+  petName
+}
+
+query getUser($includePet:Boolean=true){
+  user1: user(id:1) {
+    ...userFields
+  },
+  user2:user(id:2) {
+    ...userFields
+  },
+}
+
+```
+Here `$includePet` variable will come to fragment through query.

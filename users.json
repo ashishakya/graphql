@@ -2,11 +2,22 @@
   {
     "id": 1,
     "name": "ashish",
-    "email": "ashishakya@outlook.com"
+    "email": "ashishakya@outlook.com",
+    "pet": "tiger",
+    "petName": "tig"
   },
   {
     "id": 2,
     "name": "admin",
-    "email": "admin@admin.com"
+    "email": "admin@admin.com",
+    "pet": "whale",
+    "petName": "whale-le"
+  },
+  {
+    "id": 3,
+    "name": "user",
+    "email": "user@user.com",
+    "pet": "crocodile",
+    "petName": "crocs"
   }
 ]

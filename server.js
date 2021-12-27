@@ -22,8 +22,11 @@ let students = [
 
 const schema = buildSchema(`
      type Person{
+        id: Int!,
         name:String,
-        email:String
+        email:String,
+        pet:String,
+        petName:String
      }
      type Space {
         name:String,
