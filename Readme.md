@@ -97,3 +97,27 @@ query{
 }
 
 ```
+
+### Passing variables with default values:
+
+```
+type Person{
+    name:String,
+    email:String
+ }
+ 
+fragment userFields on Person{
+  name,
+  email
+}
+
+query getUser($user1_id:Int=1, $user2_id:Int=2){
+  user1: user(id:$user1_id) {
+    ...userFields
+  },
+  user2:user(id:$user2_id) {
+    ...userFields
+  },
+}
+
+```
