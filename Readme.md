@@ -68,6 +68,7 @@ Graphql is fully typed. Different types of graphql types are:
    - It is the operation send to server to Create, Update or Delete data
    - This is as simple as making the API endpoint part of the top-level mutation type instead of the top level query type
 6. Enum
+    - Special kind of scalar that is restricted to a particular set of allowed values.
 
 # Passing Arguments
 - It is common to pass arguments to an endpoint in a graphql Api

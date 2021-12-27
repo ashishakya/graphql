@@ -16,8 +16,8 @@ let fakeDB = [
 ];
 
 let students = [
-    {id:1, name:'ram', age:15},
-    {id:2, name:'shyam', age:25}
+    {id:1, name:'ram', age:15, status: "available"},
+    {id:2, name:'shyam', age:25, status: "not_available"}
 ];
 
 const schema = buildSchema(`
@@ -38,7 +38,12 @@ const schema = buildSchema(`
      }
      input StudentInput{
         name:String,
-        age:Int
+        age:Int,
+        status: STUDENT_STATUS
+     }
+     enum STUDENT_STATUS{
+        available
+        not_available
      }
      type Mutation {
         addMessage(message:String): String,
@@ -50,14 +55,16 @@ const schema = buildSchema(`
      type Student{
         id: ID,
         name:String,
-        age:Int
+        age:Int,
+        status: String
      }
      type Query {
         users: [Person],
         user(id:Int): Person,
         getMessage: [String]  
         getSpace(id:Int!):Space!,
-        students:[Student]    
+        students:[Student],
+        filterStudents(status: STUDENT_STATUS):[Student]    
      }
 `);
 
@@ -77,14 +84,15 @@ const root = {
     },
     students:()=>students,
     createStudent:({input})=> {
-        students.push({id: students.length +1 , name:input.name, age:input.age})
+        students.push({id: students.length +1 , name:input.name, age:input.age, status: input.status})
         return students[students.length-1]
     },
     updateStudent:({id, input})=>{
         const index = id-1;
-        students[index] = {...students[id-1], name:input.name,age:input.age}
+        students[index] = {...students[id-1], name:input.name,age:input.age, status: input.status}
         return students[index];
-    }
+    },
+    filterStudents:({status})=>students.filter(student=>student.status===status)
 };
 
 app.use('/graphql', graphqlHTTP({
