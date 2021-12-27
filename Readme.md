@@ -73,3 +73,27 @@ Graphql is fully typed. Different types of graphql types are:
 - It is common to pass arguments to an endpoint in a graphql Api
 - The argument in the schema language, typechecking happens automatically.
 - Each argument must be named and have a type.
+
+# Syntax:
+### Fragments and Alias
+```
+type Person{
+    name:String,
+    email:String
+ }
+     
+fragment userFields on Person{
+    name,
+    email
+}
+
+query{
+  user1: user(id:1) {
+    ...userFields
+  },
+  user2:user(id:2) {
+    ...userFields
+  },
+}
+
+```
