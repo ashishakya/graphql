@@ -1,0 +1,20 @@
+[
+  {
+    "character_id": 1,
+    "wood": "holly",
+    "core": "phoenix feather",
+    "length": 11
+  },
+  {
+    "character_id": 2,
+    "wood": "holly",
+    "core": "phoenix feather",
+    "length": null
+  },
+  {
+    "character_id": 5,
+    "wood": "holly",
+    "core": "phoenix feather",
+    "length": 12.5
+  }
+]

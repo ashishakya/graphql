@@ -5,8 +5,8 @@
 const {buildSchema, graphql} = require('graphql');
 const express = require('express');
 const {graphqlHTTP} = require('express-graphql');
-const users = require('./users.json')
-const characters = require("./harrypotter.json")
+const users = require('./db/users.json')
+const characters = require("./db/harrypotter.json")
 
 
 const app = express();
@@ -31,13 +31,13 @@ const schema = buildSchema(`
         petName:String
      }
      type Character {
-    id: Int
-    name: String
-    gender: String
-    dateOfBirth: String
-    actor: String
-    image: String
-  }
+        id: Int
+        name: String
+        gender: String
+        dateOfBirth: String
+        actor: String
+        image: String
+    }
      type Space {
         name:String,
         rent: Int

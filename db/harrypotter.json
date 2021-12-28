@@ -5,12 +5,7 @@
     "gender": "male",
     "dateOfBirth": "31-07-1980",
     "actor": "Daniel Radcliffe",
-    "image": "http://hp-api.herokuapp.com/images/harry.jpg",
-    "wand": {
-      "wood": "holly",
-      "core": "phoenix feather",
-      "length": 11
-    }
+    "image": "http://hp-api.herokuapp.com/images/harry.jpg"
   },
   {
     "id": 2,
@@ -18,12 +13,7 @@
     "gender": "female",
     "dateOfBirth": "19-09-1979",
     "actor": "Emma Watson",
-    "image": "http://hp-api.herokuapp.com/images/hermione.jpeg",
-    "wand": {
-      "wood": "holly",
-      "core": "phoenix feather",
-      "length": null
-    }
+    "image": "http://hp-api.herokuapp.com/images/hermione.jpeg"
   },
   {
     "id": 3,
@@ -47,12 +37,7 @@
     "gender": "male",
     "dateOfBirth": "",
     "actor": "Robert Pattinson",
-    "image": "http://hp-api.herokuapp.com/images/cedric.png",
-    "wand": {
-      "wood": "holly",
-      "core": "phoenix feather",
-      "length": 12.5
-    }
+    "image": "http://hp-api.herokuapp.com/images/cedric.png"
   },
   {
     "id": 6,
