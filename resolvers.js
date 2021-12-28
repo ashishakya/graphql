@@ -1,7 +1,8 @@
 const characters = require("./harrypotter.json");
 const resolvers = {
     Query: {
-        characters: () => characters,
+        human: () => characters.filter(character=>!character.species),
+        nonHuman: () => characters.filter(character=>!!character.species),
     },
 };
 
