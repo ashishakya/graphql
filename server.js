@@ -6,6 +6,8 @@ const {buildSchema, graphql} = require('graphql');
 const express = require('express');
 const {graphqlHTTP} = require('express-graphql');
 const users = require('./users.json')
+const characters = require("./harrypotter.json")
+
 
 const app = express();
 
@@ -28,6 +30,14 @@ const schema = buildSchema(`
         pet:String,
         petName:String
      }
+     type Character {
+    id: Int
+    name: String
+    gender: String
+    dateOfBirth: String
+    actor: String
+    image: String
+  }
      type Space {
         name:String,
         rent: Int
@@ -64,7 +74,9 @@ const schema = buildSchema(`
         getMessage: [String]  
         getSpace(id:Int!):Space!,
         students:[Student],
-        filterStudents(status: STUDENT_STATUS):[Student]    
+        filterStudents(status: STUDENT_STATUS):[Student] 
+        characters: [Character]
+   
      }
 `);
 
@@ -92,7 +104,9 @@ const root = {
         students[index] = {...students[id-1], name:input.name,age:input.age, status: input.status}
         return students[index];
     },
-    filterStudents:({status})=>students.filter(student=>student.status===status)
+    filterStudents:({status})=>students.filter(student=>student.status===status),
+    characters: () => characters
+
 };
 
 app.use('/graphql', graphqlHTTP({

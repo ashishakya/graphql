@@ -4,9 +4,17 @@ Run `yarn` or `npm install` command.
 
 # Run Server 
 Run any one of the following command to run local server:
+
+### For Qraphiql:
 - `node server.js` 
-- `yarn serve`
-- `npm run serve`
+- `yarn watch`
+- `npm run watch`
+
+
+### For Apollo Server:
+- `node index.js`
+- `yarn watch:apollo`
+- `npm run watch:apollo`
 
 # References
 https://www.youtube.com/watch?v=SzLOE1VBYRU&t=3s&ab_channel=Bitfumes
