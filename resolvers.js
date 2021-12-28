@@ -23,9 +23,10 @@ const resolvers = {
         length: (parent)=>parent.length ? parent.length : 0
     },
     Query: {
-        human: () => characters.filter(character => !character.species),
-        nonHuman: () => characters.filter(character => !!character.species),
+        humans: () => characters.filter(character => !character.species),
+        nonHumans: () => characters.filter(character => !!character.species),
         characters: () => characters,
+        human:(_, {id})=> characters.find(character=>character.id === Number(id))
     },
 };
 

@@ -36,9 +36,10 @@ const types = gql`
     }
     
     type Query {
-        human: [Human!]!
-        nonHuman: [NonHuman!]!
+        humans: [Human!]!
+        nonHumans: [NonHuman!]!
         characters: [Character!]!
+        human(id:ID!): Human
     }
 `;
 
