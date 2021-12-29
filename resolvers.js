@@ -63,6 +63,19 @@ const resolvers = {
             return  await Character.create(input);
 
         },
+        async updateHumanCharacter(_, {id, input}, {characters, Character}){
+             const character = await Character.update(input, {
+                 where:{
+                     id
+                 }
+             })
+
+            return Character.findOne({
+                where:{
+                    id
+                }
+            })
+        },
     }
 };
 

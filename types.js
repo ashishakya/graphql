@@ -52,6 +52,7 @@ const types = gql`
     }
     
     type Mutation{
+        updateHumanCharacter(id:ID, input: HumanCharacterInput):Character,
         createHumanCharacter(input: HumanCharacterInput):Character,
     }
 `;
