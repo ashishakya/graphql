@@ -1,5 +1,7 @@
 // const characters = require("./db/harrypotter.json");
 // const wands = require("./db/wands.json");
+const { Op } = require("sequelize");
+
 const resolvers = {
     Character: {
         __resolveType(character, context, info) {
@@ -23,11 +25,33 @@ const resolvers = {
         length: (parent)=>parent.length ? parent.length : 0
     },
     Query: {
-        humans: (_, __, {characters}) => characters.filter(character => !character.species),
-        nonHumans: (_, __, {characters}) => characters.filter(character => !!character.species),
-        characters: (_, __, context) => context.characters,
-        human:(_, {id}, {characters})=> characters.find(character=>character.id === Number(id))
-        // synatax: query:(parent, params, context)
+        humans: (_, __, {characters, Character}) => {
+            return Character.findAll();
+            return characters.filter(character => !character.species)
+        },
+        nonHumans: (_, __, {characters, Character}) => {
+            return Character.findAll({
+                where:{
+                    species:{
+                        [Op.ne]:null
+                    }
+                }
+            })
+            return characters.filter(character => !!character.species)
+        },
+        characters: (_, __, {character, Character}) => {
+            return Character.findAll()
+            // return characters;
+        },
+        human:(_, {id}, {characters, Character})=> {
+            return Character.findOne({
+                where:{
+                    id
+                }
+            })
+            return characters.find(character=>character.id === Number(id))
+        }
+        // syntax: query:(parent, params, context)
     },
     Mutation:{
         createHumanCharacter(_, {input}, {characters}){
