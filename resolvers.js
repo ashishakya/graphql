@@ -29,6 +29,13 @@ const resolvers = {
         human:(_, {id}, {characters})=> characters.find(character=>character.id === Number(id))
         // synatax: query:(parent, params, context)
     },
+    Mutation:{
+        createHumanCharacter(_, {input}, {characters}){
+            const data  = {...input, id:characters.length + 1}
+            characters.push(data);
+            return data;
+        }
+    }
 };
 
 module.exports = resolvers;
