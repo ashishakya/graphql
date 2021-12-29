@@ -1,6 +1,8 @@
-# Installation
+# Requirements:
+- Node version ">=12.0"
 
-Run `yarn` or `npm install` command.
+# Installation
+- Run `yarn` or `npm install` command.
 
 # Run Server 
 Run any one of the following command to run local server:
@@ -15,6 +17,12 @@ Run any one of the following command to run local server:
 - `node index.js`
 - `yarn watch:apollo`
 - `npm run watch:apollo`
+
+# Other commands:
+- `node_modules/.bin/sequelize init`
+- `node_modules/.bin/sequelize model:generate --name Character --attributes name:String,gender:String,dateOfBirth:String,actor:String,image:String`
+
+
 
 # References
 https://www.youtube.com/watch?v=SzLOE1VBYRU&t=3s&ab_channel=Bitfumes
