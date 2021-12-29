@@ -45,13 +45,14 @@ const types = gql`
     input HumanCharacterInput{
         name: String!
         gender: CHARACTER_GENDER!
-        dateOfBirth: String!
-        actor: String!
-        image: String!
+        dateOfBirth: String
+        actor: String
+        image: String
+        species: String
     }
     
     type Mutation{
-        createHumanCharacter(input: HumanCharacterInput):Human,
+        createHumanCharacter(input: HumanCharacterInput):Character,
     }
 `;
 

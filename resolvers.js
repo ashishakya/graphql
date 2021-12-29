@@ -54,11 +54,15 @@ const resolvers = {
         // syntax: query:(parent, params, context)
     },
     Mutation:{
-        createHumanCharacter(_, {input}, {characters}){
-            const data  = {...input, id:characters.length + 1}
-            characters.push(data);
-            return data;
-        }
+         async createHumanCharacter(_, {input}, {characters, Character}){
+            // console.log(input);
+            // const data  = {...input, id:characters.length + 1}
+            // characters.push(data);
+            // return data;
+
+            return  await Character.create(input);
+
+        },
     }
 };
 
