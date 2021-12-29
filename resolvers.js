@@ -1,5 +1,5 @@
-const characters = require("./db/harrypotter.json");
-const wands = require("./db/wands.json");
+// const characters = require("./db/harrypotter.json");
+// const wands = require("./db/wands.json");
 const resolvers = {
     Character: {
         __resolveType(character, context, info) {
@@ -14,19 +14,20 @@ const resolvers = {
     },
     Human:{
         // it overrides the wand key of Human type
-        wand:(parent)=>{
+        wand:(parent, _, {wands})=>{
             return wands.find(wand=>wand.character_id ===parent.id)
         },
     },
     Wand:{
-        wood:(parent)=>`${parent.wood} @override`,
+        // wood:(parent)=>`${parent.wood} @override`,
         length: (parent)=>parent.length ? parent.length : 0
     },
     Query: {
-        humans: () => characters.filter(character => !character.species),
-        nonHumans: () => characters.filter(character => !!character.species),
-        characters: () => characters,
-        human:(_, {id})=> characters.find(character=>character.id === Number(id))
+        humans: (_, __, {characters}) => characters.filter(character => !character.species),
+        nonHumans: (_, __, {characters}) => characters.filter(character => !!character.species),
+        characters: (_, __, context) => context.characters,
+        human:(_, {id}, {characters})=> characters.find(character=>character.id === Number(id))
+        // synatax: query:(parent, params, context)
     },
 };
 
